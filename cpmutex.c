@@ -60,7 +60,7 @@ int cpmutex_p_lock(cpmutex *m) {
     pthread_cond_wait(&m->producer_cond, &m->outer);
 
   // by this point we have inner, so we're not waiting anymore
-  m->consumers--;
+  m->producers--;
   rc = pthread_mutex_unlock(&m->outer);
   if(rc != 0) return 0;
 
